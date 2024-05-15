@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: coinroutes-api
+  cloud:
+    nacos:
+      discovery:
+        enabled: true
+        server-addr: 10.15.3.40:8848
+        namespace: e62e55bc-1cac-41bd-a35b-e5f889f78b45
+      config:
+        enabled: true
+        server-addr: 10.15.3.40:8848
+        namespace: e62e55bc-1cac-41bd-a35b-e5f889f78b45
+        file-extension: properties
+        refreshable-dataids: ${spring.application.name}.properties

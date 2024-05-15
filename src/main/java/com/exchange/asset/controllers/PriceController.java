@@ -4,6 +4,7 @@ import com.exchange.asset.domain.Asset;
 import com.exchange.asset.service.PriceService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ public class PriceController {
   }
 
   @GetMapping("/{symbol}")
-  public Asset getPrice(@RequestParam String symbol) {
+  public Asset getPrice(@PathVariable String symbol) {
     Asset asset = new Asset();
     asset.setSymbol(symbol);
     asset.setPrice(priceService.getPrice(symbol));

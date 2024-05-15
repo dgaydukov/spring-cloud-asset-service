@@ -21,7 +21,6 @@ public class PriceController {
     priceService.setPrice(asset.getSymbol(), asset.getPrice());
   }
 
-  // private endpoint
   @GetMapping("/{symbol}")
   public Asset getPrice(@RequestParam String symbol) {
     Asset asset = new Asset();

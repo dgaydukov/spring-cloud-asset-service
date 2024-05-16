@@ -5,6 +5,7 @@ import com.exchange.asset.service.impl.PriceServiceImpl;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 public class PriceServiceTest {
 
@@ -12,7 +13,8 @@ public class PriceServiceTest {
 
   @BeforeEach
   public void init() {
-    priceService = new PriceServiceImpl();
+    MessageTranslationService messageTranslationService = Mockito.mock(MessageTranslationService.class);
+    priceService = new PriceServiceImpl(messageTranslationService);
   }
 
   @Test

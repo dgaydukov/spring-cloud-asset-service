@@ -2,15 +2,19 @@ package com.exchange.asset.service.impl;
 
 import com.exchange.asset.config.ErrorCode;
 import com.exchange.asset.exception.AppException;
+import com.exchange.asset.service.MessageTranslationService;
 import com.exchange.asset.service.PriceService;
 import java.util.HashMap;
 import java.util.Map;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class PriceServiceImpl implements PriceService {
+  private final MessageTranslationService messageTranslationService;
 
   private Map<String, Double> prices = new HashMap<>();
 
@@ -24,7 +28,9 @@ public class PriceServiceImpl implements PriceService {
   public double getPrice(String symbol) {
     log.info("Fetching price for: symbol={}", symbol);
     if (!prices.containsKey(symbol)) {
-      throw new AppException(ErrorCode.PRICE_NOT_FOUND, "Price not found for symbol=" + symbol);
+      ErrorCode errorCode = ErrorCode.PRICE_NOT_FOUND;
+      String userMsg = messageTranslationService.getMessage(errorCode.getErrorCode(), new Object[]{symbol});
+      throw new AppException(errorCode, userMsg);
     }
     double price = prices.get(symbol);
     log.info("Fetched price for: symbol={}, price={}", symbol, price);

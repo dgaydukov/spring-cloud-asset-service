@@ -1,5 +1,6 @@
 package com.exchange.asset.service;
 
+import com.exchange.asset.config.ErrorCode;
 import com.exchange.asset.exception.AppException;
 import com.exchange.asset.service.impl.PriceServiceImpl;
 import org.junit.jupiter.api.Assertions;
@@ -27,13 +28,12 @@ public class PriceServiceTest {
 
   @Test
   public void getPriceTest() {
-    final String symbol = "BTC";
-    final String errorMsg = "Price not found for symbol=" + symbol;
     AppException thrown = Assertions.assertThrows(
         AppException.class,
-        () -> priceService.getPrice(symbol),
+        () -> priceService.getPrice("BTC"),
         "AppException should be thrown if price not found"
     );
-    Assertions.assertEquals(thrown.getMessage(), errorMsg, "exception message mismatch");
+    Assertions.assertEquals(thrown.getMessage(), ErrorCode.PRICE_NOT_FOUND.getErrorCode(),
+        "exception message mismatch");
   }
 }

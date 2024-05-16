@@ -1,5 +1,6 @@
 package com.exchange.asset.service.impl;
 
+import com.exchange.asset.config.ErrorCode;
 import com.exchange.asset.exception.AppException;
 import com.exchange.asset.service.PriceService;
 import java.util.HashMap;
@@ -22,7 +23,7 @@ public class PriceServiceImpl implements PriceService {
   public double getPrice(String symbol) {
     log.info("Fetching price for: symbol={}", symbol);
     if (!prices.containsKey(symbol)){
-      throw new AppException("Price not found for symbol=" + symbol);
+      throw new AppException(ErrorCode.PRICE_NOT_FOUND, "Price not found for symbol=" + symbol);
     }
     return prices.get(symbol);
   }

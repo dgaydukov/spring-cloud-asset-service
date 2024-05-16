@@ -5,7 +5,6 @@ import com.exchange.asset.exception.AppException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -19,6 +18,6 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public AppError handleAppException(HttpServletRequest req, AppException ex) {
         log.error("catch AppException: url={}", req.getRequestURI(), ex);
-        return new AppError(0, "err", null, null);
+        return new AppError(ex.getCode(), ex.getErrorCode(), ex.getMsg(), null);
     }
 }

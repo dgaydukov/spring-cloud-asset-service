@@ -1,20 +1,18 @@
 package com.exchange.asset.config;
 
-import lombok.Getter;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.context.MessageSource;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
-@Getter
-@Slf4j
-@RefreshScope
 public class AppConfig {
-
-  @Value("${app.config.env:dev}")
-  private String configEnv;
-
-  @Value("${app.config.print:true}")
-  private boolean printConfig;
+  @Bean
+  public MessageSource messageSource() {
+    ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
+    messageSource.setBasename("classpath:messages");
+    //reload messages every 30 seconds
+    messageSource.setCacheSeconds(30);
+    return messageSource;
+  }
 }

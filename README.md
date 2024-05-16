@@ -9,6 +9,14 @@ curl -H 'content-type: application/json' -d '{"symbol":"BTC","price":100}' http:
 curl -H 'content-type: application/json' http://localhost:8081/asset/price/BTC
 ```
 
+### I18n support
+We have automatic support for multiple language, just call
+```shell
+# get error in Spanish language
+curl -H 'content-type: application/json' -H 'Accept-Language: es' http://localhost:8081/asset/price/BTC
+```
+No additional configuration to support it required, it works out-of-the-box, this header `Accept-Language` would automatically put correct language into `LocaleContextHolder`.
+
 ### Nacos config
 Make sure your nacos server is running and you pass it's IP into config variables. If you try to run
 this app without nacos config then it won't start.

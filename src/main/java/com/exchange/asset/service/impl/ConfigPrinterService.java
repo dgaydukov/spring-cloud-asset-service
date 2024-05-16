@@ -10,13 +10,14 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Slf4j
 public class ConfigPrinterService {
+
   private final AppConfig appConfig;
 
   @PostConstruct
-  public void test(){
-    new Thread(()->{
-      while (true){
-        if (appConfig.isPrintConfig()){
+  public void test() {
+    new Thread(() -> {
+      while (true) {
+        if (appConfig.isPrintConfig()) {
           log.info("configEnv={}", appConfig.getConfigEnv());
         }
         sleep(10);
@@ -24,7 +25,7 @@ public class ConfigPrinterService {
     }).start();
   }
 
-  private void sleep(long sec){
+  private void sleep(long sec) {
     try {
       Thread.sleep(1000 * sec);
     } catch (InterruptedException ex) {

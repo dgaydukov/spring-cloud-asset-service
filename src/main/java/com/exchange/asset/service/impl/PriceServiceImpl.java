@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 @Service
 @Slf4j
 public class PriceServiceImpl implements PriceService {
+
   private Map<String, Double> prices = new HashMap<>();
 
   @Override
@@ -22,9 +23,11 @@ public class PriceServiceImpl implements PriceService {
   @Override
   public double getPrice(String symbol) {
     log.info("Fetching price for: symbol={}", symbol);
-    if (!prices.containsKey(symbol)){
+    if (!prices.containsKey(symbol)) {
       throw new AppException(ErrorCode.PRICE_NOT_FOUND, "Price not found for symbol=" + symbol);
     }
-    return prices.get(symbol);
+    double price = prices.get(symbol);
+    log.info("Fetched price for: symbol={}, price={}", symbol, price);
+    return price;
   }
 }

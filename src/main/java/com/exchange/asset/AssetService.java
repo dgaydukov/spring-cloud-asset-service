@@ -11,7 +11,8 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EnableDiscoveryClient
 public class AssetService {
-	public static void main(String[] args) {
-		SpringApplication.run(AssetService.class, args);
-	}
+
+  public static void main(String[] args) {
+    SpringApplication.run(AssetService.class, args);
+  }
 }

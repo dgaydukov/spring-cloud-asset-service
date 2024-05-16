@@ -7,15 +7,16 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class PriceServiceTest {
+
   private PriceService priceService;
 
   @BeforeEach
-  public void init(){
+  public void init() {
     priceService = new PriceServiceImpl();
   }
 
   @Test
-  public void setPriceTest(){
+  public void setPriceTest() {
     final String symbol = "BTC";
     final double price = 100;
     priceService.setPrice(symbol, price);
@@ -23,7 +24,7 @@ public class PriceServiceTest {
   }
 
   @Test
-  public void getPriceTest(){
+  public void getPriceTest() {
     final String symbol = "BTC";
     final String errorMsg = "Price not found for symbol=" + symbol;
     AppException thrown = Assertions.assertThrows(

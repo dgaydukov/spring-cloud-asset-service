@@ -3,7 +3,6 @@ package com.exchange.asset.controllers;
 import com.exchange.asset.domain.Asset;
 import com.exchange.asset.service.PriceService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/asset/price")
 @RequiredArgsConstructor
 public class PriceController {
+
   private final PriceService priceService;
 
   @PostMapping

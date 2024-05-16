@@ -5,11 +5,11 @@ spring:
     nacos:
       discovery:
         enabled: true
-        server-addr: 127.0.0.1:8848
-        namespace: e62e55bc-1cac-41bd-a35b-e5f889f78b45
+        server-addr: ${NACOS_SERVER_IP}:8848
+        namespace: ${NACOS_SERVER_ID}
       config:
         enabled: true
-        server-addr: 127.0.0.1:8848
-        namespace: e62e55bc-1cac-41bd-a35b-e5f889f78b45
+        server-addr: ${NACOS_SERVER_IP}:8848
+        namespace: ${NACOS_SERVER_ID}
         file-extension: properties
         refreshable-dataids: ${spring.application.name}.properties

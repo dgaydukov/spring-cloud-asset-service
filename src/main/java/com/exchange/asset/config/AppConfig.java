@@ -15,6 +15,6 @@ public class AppConfig {
   @Value("${app.config.env:dev}")
   private String configEnv;
 
-  @Value("${app.config.print:false}")
+  @Value("${app.config.print:true}")
   private boolean printConfig;
 }

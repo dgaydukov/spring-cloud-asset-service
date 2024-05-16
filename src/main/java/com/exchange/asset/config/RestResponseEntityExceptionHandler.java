@@ -24,7 +24,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public AppError handleAppException(HttpServletRequest req, AppException ex) {
         String traceId = null;
-        if (tracer.currentSpan().context() != null){
+        if (tracer.currentSpan() != null && tracer.currentSpan().context() != null){
             traceId = tracer.currentSpan().context().traceId();
         }
         log.error("catch AppException: url={}", req.getRequestURI(), ex);

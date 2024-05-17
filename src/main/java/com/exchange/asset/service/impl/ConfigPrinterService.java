@@ -11,25 +11,25 @@ import org.springframework.stereotype.Service;
 @Slf4j
 public class ConfigPrinterService {
 
-  private final AppProps appConfig;
+    private final AppProps appConfig;
 
-  @PostConstruct
-  public void test() {
-    new Thread(() -> {
-      while (true) {
-        if (appConfig.isPrintConfig()) {
-          log.info("configEnv={}", appConfig.getConfigEnv());
-        }
-        sleep(10);
-      }
-    }).start();
-  }
-
-  private void sleep(long sec) {
-    try {
-      Thread.sleep(1000 * sec);
-    } catch (InterruptedException ex) {
-      throw new RuntimeException(ex);
+    @PostConstruct
+    public void test() {
+        new Thread(() -> {
+            while (true) {
+                if (appConfig.isPrintConfig()) {
+                    log.info("configEnv={}", appConfig.getConfigEnv());
+                }
+                sleep(10);
+            }
+        }).start();
     }
-  }
+
+    private void sleep(long sec) {
+        try {
+            Thread.sleep(1000 * sec);
+        } catch (InterruptedException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
 }

@@ -17,17 +17,17 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @RequiredArgsConstructor
 public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionHandler {
 
-  private final Tracer tracer;
+    private final Tracer tracer;
 
 
-  @ExceptionHandler({AppException.class})
-  @ResponseStatus(HttpStatus.BAD_REQUEST)
-  public AppError handleAppException(HttpServletRequest req, AppException ex) {
-    String traceId = null;
-    if (tracer.currentSpan() != null && tracer.currentSpan().context() != null) {
-      traceId = tracer.currentSpan().context().traceId();
+    @ExceptionHandler({AppException.class})
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public AppError handleAppException(HttpServletRequest req, AppException ex) {
+        String traceId = null;
+        if (tracer.currentSpan() != null && tracer.currentSpan().context() != null) {
+            traceId = tracer.currentSpan().context().traceId();
+        }
+        log.error("catch AppException: url={}", req.getRequestURI(), ex);
+        return new AppError(ex.getCode(), ex.getErrorCode(), ex.getMsg(), traceId);
     }
-    log.error("catch AppException: url={}", req.getRequestURI(), ex);
-    return new AppError(ex.getCode(), ex.getErrorCode(), ex.getMsg(), traceId);
-  }
 }

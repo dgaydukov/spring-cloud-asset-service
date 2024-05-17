@@ -7,8 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class AppError {
 
-  private int code;
-  private String errorCode;
-  private String msg;
-  private String traceId;
+    private int code;
+    private String errorCode;
+    private String msg;
+    private String traceId;
 }

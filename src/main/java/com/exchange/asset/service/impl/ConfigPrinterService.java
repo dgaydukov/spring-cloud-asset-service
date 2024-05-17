@@ -14,7 +14,7 @@ public class ConfigPrinterService {
     private final AppProps appConfig;
 
     @PostConstruct
-    public void test() {
+    public void print() {
         new Thread(() -> {
             while (true) {
                 if (appConfig.isPrintConfig()) {

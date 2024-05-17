@@ -1,5 +1,6 @@
 package com.exchange.asset.service.impl;
 
+import com.exchange.asset.config.Constants;
 import com.exchange.asset.service.MessageTranslationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.MessageSource;
@@ -15,7 +16,7 @@ public class MessageTranslationServiceImpl implements MessageTranslationService 
 
     @Override
     public String getMessage(String key) {
-        return getMessage(key, new Object[]{});
+        return getMessage(key, Constants.EMPTY_PARAMS);
     }
 
     @Override

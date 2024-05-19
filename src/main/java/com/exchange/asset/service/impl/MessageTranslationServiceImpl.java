@@ -29,9 +29,9 @@ public class MessageTranslationServiceImpl implements MessageTranslationService 
     }
 
     public String getMessage(String key, Object[] params, Locale locale) {
-        try{
+        try {
             return messageSource.getMessage(key, params, locale);
-        } catch (NoSuchMessageException ex){
+        } catch (NoSuchMessageException ex) {
             log.error("Failed to find translation: key={}, params={}, locale={}", key, Arrays.toString(params), locale);
             return null;
         }

@@ -15,5 +15,4 @@ public class InfoController {
         info.setVersion("v1.0");
         return info;
     }
-
 }

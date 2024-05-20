@@ -61,3 +61,9 @@ com.exchange.asset.exception.AppException: price_not_found
 	at com.exchange.asset.service.impl.PriceServiceImpl.getPrice(PriceServiceImpl.java:34)
 	at com.exchange.asset.controllers.PriceController.getPrice(PriceController.java:24)
 ```
+
+### Random exception 
+If you look into `PriceController` you will notice that there are 2 API endpoints to get price:
+* `/asset/price/{symbol}` - normal endpoint to fetch the price
+* `/asset/price2/{symbol}` - second endpoint to fetch the price, but this one throws 500 randomly, this is specifically done to illustrate how you can handle 500 with `feign.Retryer` where you can intercept 5xx errors and retry.
+So if you want to test normal flow, use first API, but if you want to test retry flow, feel free to call second endpoint

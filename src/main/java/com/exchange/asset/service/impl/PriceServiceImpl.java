@@ -17,7 +17,7 @@ import java.util.Random;
 @RequiredArgsConstructor
 public class PriceServiceImpl implements PriceService {
     private final MessageTranslationService messageTranslationService;
-
+    private final Random random = new Random();
     private Map<String, Double> prices = new HashMap<>();
 
     @Override
@@ -45,9 +45,8 @@ public class PriceServiceImpl implements PriceService {
         return getPrice(symbol);
     }
 
-    private final Random random = new Random();
-    private void throwRandomException(){
-        if(random.nextBoolean()){
+    private void throwRandomException() {
+        if (random.nextBoolean()) {
             throw new RuntimeException("Oops, random 500 error code");
         }
     }

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Random;
 
 @Service
 @Slf4j
@@ -28,6 +29,7 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public double getPrice(String symbol) {
         log.info("Fetching price for: symbol={}", symbol);
+        throwRandomException();
         if (!prices.containsKey(symbol)) {
             ErrorCode errorCode = ErrorCode.PRICE_NOT_FOUND;
             String userMsg = messageTranslationService.getMessage(errorCode.getErrorCode(), new Object[]{symbol});
@@ -36,5 +38,12 @@ public class PriceServiceImpl implements PriceService {
         double price = prices.get(symbol);
         log.info("Fetched price for: symbol={}, price={}", symbol, price);
         return price;
+    }
+
+    private final Random random = new Random();
+    private void throwRandomException(){
+        if(random.nextBoolean()){
+            throw new RuntimeException("Oops, random 500 error code");
+        }
     }
 }

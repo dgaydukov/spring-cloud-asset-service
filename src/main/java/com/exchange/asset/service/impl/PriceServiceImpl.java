@@ -29,7 +29,6 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public double getPrice(String symbol) {
         log.info("Fetching price for: symbol={}", symbol);
-        throwRandomException();
         if (!prices.containsKey(symbol)) {
             ErrorCode errorCode = ErrorCode.PRICE_NOT_FOUND;
             String userMsg = messageTranslationService.getMessage(errorCode.getErrorCode(), new Object[]{symbol});
@@ -38,6 +37,12 @@ public class PriceServiceImpl implements PriceService {
         double price = prices.get(symbol);
         log.info("Fetched price for: symbol={}, price={}", symbol, price);
         return price;
+    }
+
+    @Override
+    public double getPrice2(String symbol) {
+        throwRandomException();
+        return getPrice(symbol);
     }
 
     private final Random random = new Random();

@@ -6,22 +6,30 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/asset/price")
+@RequestMapping("/asset")
 @RequiredArgsConstructor
 public class PriceController {
 
     private final PriceService priceService;
 
-    @PostMapping
+    @PostMapping("/price")
     public void setPrice(@RequestBody Asset asset) {
         priceService.setPrice(asset.getSymbol(), asset.getPrice());
     }
 
-    @GetMapping("/{symbol}")
+    @GetMapping("/price/{symbol}")
     public Asset getPrice(@PathVariable String symbol) {
         Asset asset = new Asset();
         asset.setSymbol(symbol);
         asset.setPrice(priceService.getPrice(symbol));
+        return asset;
+    }
+
+    @GetMapping("/price2/{symbol}")
+    public Asset getPrice2(@PathVariable String symbol) {
+        Asset asset = new Asset();
+        asset.setSymbol(symbol);
+        asset.setPrice(priceService.getPrice2(symbol));
         return asset;
     }
 }

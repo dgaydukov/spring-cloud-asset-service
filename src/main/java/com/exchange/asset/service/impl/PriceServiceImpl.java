@@ -29,25 +29,33 @@ public class PriceServiceImpl implements PriceService {
     @Override
     public double getPrice(String symbol) {
         log.info("Fetching price for: symbol={}", symbol);
+        double price = __getPrice(symbol);
+        log.info("Fetched price for: symbol={}, price={}", symbol, price);
+        return price;
+    }
+
+    private double __getPrice(String symbol) {
         if (!prices.containsKey(symbol)) {
             ErrorCode errorCode = ErrorCode.PRICE_NOT_FOUND;
             String userMsg = messageTranslationService.getMessage(errorCode.getErrorCode(), new Object[]{symbol});
             throw new AppException(errorCode, userMsg);
         }
-        double price = prices.get(symbol);
-        log.info("Fetched price for: symbol={}, price={}", symbol, price);
-        return price;
+        return prices.get(symbol);
     }
 
     @Override
     public double getPrice2(String symbol) {
+        log.info("Fetching price for: symbol={}", symbol);
         throwRandomException();
-        return getPrice(symbol);
+        double price = __getPrice(symbol);
+        log.info("Fetched price for: symbol={}, price={}", symbol, price);
+        return price;
+
     }
 
     private void throwRandomException() {
         if (random.nextBoolean()) {
-            throw new RuntimeException("Oops, random 500 error code");
+            throw new RuntimeException("server_error");
         }
     }
 }

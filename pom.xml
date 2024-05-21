@@ -58,16 +58,6 @@
             <version>${nacos.version}</version>
         </dependency>
         <dependency>
-            <artifactId>spring-cloud-starter-openfeign</artifactId>
-            <groupId>org.springframework.cloud</groupId>
-            <version>${spring.cloud.version}</version>
-        </dependency>
-        <dependency>
-            <artifactId>spring-cloud-starter-loadbalancer</artifactId>
-            <groupId>org.springframework.cloud</groupId>
-            <version>${spring.cloud.version}</version>
-        </dependency>
-        <dependency>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
             <groupId>org.springframework.cloud</groupId>
             <version>${spring.cloud.version}</version>

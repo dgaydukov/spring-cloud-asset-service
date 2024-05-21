@@ -82,4 +82,4 @@ This project is a part of spring cloud microservices that includes following pro
 * [asset-service](https://github.com/dgaydukov/spring-cloud-asset-service) - provide asset price information
 * [order-service](https://github.com/dgaydukov/spring-cloud-order-service) - calls asset service to get the price
 * [external-gateway](https://github.com/dgaydukov/spring-cloud-external-gateway) - serve as gateway to forward requests from customers. You can call above 2 services from this gateway.
-* [Docs](https://github.com/dgaydukov/spring-cloud-project?tab=readme-ov-file) - special repository with all documentation for intra-service communication
+* [cloud project docs](https://github.com/dgaydukov/spring-cloud-project?tab=readme-ov-file) - special repository with all documentation for intra-service communication

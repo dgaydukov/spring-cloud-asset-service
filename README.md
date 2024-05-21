@@ -7,6 +7,7 @@
 * [Nacos config hot reload](#nacos-config-hot-reload)
 * [Returning traceId to customer](#returning-traceid-to-customer)
 * [Throwing random exception](#throwing-random-exception)
+* [Links](#links)
 
 ### How to use
 Below is example how you can call 2 API endpoints here
@@ -75,3 +76,10 @@ If you look into `PriceController` you will notice that there are 2 API endpoint
 * `/asset/price/{symbol}` - normal endpoint to fetch the price
 * `/asset/price2/{symbol}` - second endpoint to fetch the price, but this one throws 500 randomly, this is specifically done to illustrate how you can handle 500 with `feign.Retryer` where you can intercept 5xx errors and retry.
 So if you want to test normal flow, use first API, but if you want to test retry flow, feel free to call second endpoint
+
+### Links
+This project is a part of spring cloud microservices that includes following projects:
+* asset-service 
+* [order-service](https://github.com/dgaydukov/spring-cloud-order-service) - calls asset service to get the price
+* [external-gateway](https://github.com/dgaydukov/spring-cloud-external-gateway) - serve as gateway to forward requests from customers
+You can get more details on [overall architecture](https://github.com/dgaydukov/spring-cloud-project?tab=readme-ov-file#microservice-architecture)

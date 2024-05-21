@@ -4,7 +4,8 @@ import lombok.Getter;
 
 @Getter
 public enum ErrorCode {
-    FAILED_TO_PROCESS_REQUEST(100000, "failed_to_process_request"),
+    INTERNAL_SERVER_ERROR(100000, "server_error"),
+    FAILED_TO_PROCESS_REQUEST(100001, "failed_to_process_request"),
     PRICE_NOT_FOUND(100001, "price_not_found");
 
     private int code;

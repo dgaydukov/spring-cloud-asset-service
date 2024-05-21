@@ -1,4 +1,12 @@
-# Asset-service
+# Asset service
+
+### Content
+* [How to use](#how-to-use)
+* [I18n support](#i18n-support)
+* [Nacos env vars](#nacos-env-vars)
+* [Nacos config hot reload](#nacos-config-hot-reload)
+* [Returning traceId to customer](#returning-traceid-to-customer)
+* [Throwing random exception](#throwing-random-exception)
 
 ### How to use
 Below is example how you can call 2 API endpoints here
@@ -18,7 +26,7 @@ curl -H 'content-type: application/json' -H 'Accept-Language: es' http://localho
 No additional configuration to support it required, it works out-of-the-box, this header `Accept-Language` would
 automatically put correct language into `LocaleContextHolder`.
 
-### Nacos config
+### Nacos env vars
 Make sure your nacos server is running and you pass it's IP into config variables. If you try to run
 this app without nacos config then it won't start.
 ```
@@ -62,7 +70,7 @@ com.exchange.asset.exception.AppException: price_not_found
 	at com.exchange.asset.controllers.PriceController.getPrice(PriceController.java:24)
 ```
 
-### Random exception 
+### Throwing random exception
 If you look into `PriceController` you will notice that there are 2 API endpoints to get price:
 * `/asset/price/{symbol}` - normal endpoint to fetch the price
 * `/asset/price2/{symbol}` - second endpoint to fetch the price, but this one throws 500 randomly, this is specifically done to illustrate how you can handle 500 with `feign.Retryer` where you can intercept 5xx errors and retry.
